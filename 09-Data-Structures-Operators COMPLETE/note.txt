@@ -1,0 +1,134 @@
+Tentei deixar tudo no script da pasta desafiosGPT, mas percebi que não ia dar tão certo assim. Bom... eu provavelmente me perdi todo nesse conteúdo e todas as minhas anotações ficaram confusas no futuro, mas... o importante é que estou anotando para fixar melhor meu conhecimento.
+
+ Tem anotações aqui, na pasta desafiosGPT e no caderno tbm.
+
+  Essas anotaçes são sobre os operadores de atribuição logicas.        17-11-24
+    // O operador '||' retornará o primeiro valor verdadeiro de todos os operandos, ou simlesmente o ultimo valor se todos eles forem falsos.
+    // Por outro lado, o operador '&&' retornará o primeiro valor falso, ou simplesmente o ultimo valor se todos forem verdadeiros.
+    // Quanto as aplicações práticas, podemos usar o operador '||' para definir os valores padrão e podemos usar o operador '&&' para executar o código no segundo operando se o primeiro for verdadeiro.
+
+  Isso aqui estou anotando no mesmo dia de criação desse arquivo.        22-11-24
+    // O for...of é um laço de repetição moderno em JavaScript que serve para iterar sobre elementos de iteráveis, como arrays, strings, mapas, conjuntos, e até objetos personalizados que implementem o protocolo de iteração. <-- o resto tá no caderno, anotei mais lá do que aqui hoje.
+
+    // Quando você precisa do índice atual junto com o elemento ao usar o for...of, pode usar o método .entries() do array. O .entries() retorna um iterável que fornece pares [índice, elemento] em cada iteração.
+
+    // A desestruturação em arrays dentro de um for...of funciona como uma forma de "desempacotar" os elementos do iterável em variáveis separadas. Isso é especialmente útil quando os elementos do iterável são arrays aninhados ou pares como os retornados por .entries().
+      // Exemplo 1: Usando .entries() para obter índice e elemento
+        const frutas = ["Maçã", "Banana",   "Cereja"];
+
+        for (const [indice, elemento] of  frutas.entries()) {
+          console.log(`Índice: ${indice},   Elemento: ${elemento}`);
+        }
+        // Saída:
+        // Índice: 0, Elemento: Maçã
+        // Índice: 1, Elemento: Banana
+        // Índice: 2, Elemento: Cereja
+
+
+      // Exemplo 2: Array de arrays
+        const coordenadas = [
+          [10, 20],
+          [30, 40],
+          [50, 60],
+        ];
+
+        for (const [x, y] of coordenadas) {
+          console.log(`x: ${x}, y: ${y}`);
+        }
+        // Saída:
+        // x: 10, y: 20
+        // x: 30, y: 40
+        // x: 50, y: 60
+
+
+      // Exemplo 3: Usando valores padrão na desestruturação
+        const pares = [
+          [1, 2],
+          [3], // Falta um segundo valor
+          [4, 5],
+        ];
+
+        for (const [a, b = 0] of pares) {
+          console.log(`a: ${a}, b: ${b}`);
+        }
+        // Saída:
+        // a: 1, b: 2
+        // a: 3, b: 0
+        // a: 4, b: 5
+
+  Enhanced Object Literals.        24-11-24
+    //Enhanced Object Literals introduziram melhorias na definição de objetos em JavaScript. Elas facilitam a escrita, tornam o código mais conciso e ajudam na manipulação de objetos. As principais características são:  
+      *Shorthand Property Names (Nomes curtos) //Se a chave e o valor tiverem o mesmo nome, basta declarar uma vez:
+        const nome = "João";
+        const idade = 25;
+        const pessoa = { nome, idade };
+        console.log(pessoa); // { nome: 'João', idade: 25 }
+    
+      *Shorthand Method Definitions (Métodos curtos)  //Não precisa usar function ao declarar métodos:
+        const pessoa = {
+          falar() {
+            console.log("Olá!");
+          }
+        };
+        pessoa.falar(); // Olá!
+
+      *Computed Property Names (Nomes calculados) //Use expressões como nomes de propriedades:
+        const prop = "idade";
+        const pessoa = {
+          nome: "Ana",
+          [prop]: 30, // Nome da propriedade será       'idade'
+        };
+        console.log(pessoa); // { nome: 'Ana',      idade: 30 }
+
+      *Object.assign simplificado (Concatenar objetos com spread) //Combine objetos de forma mais prática com o operador spread (...):
+        const base = { nome: "Carlos", idade: 40 };
+        const adicional = { profissão: "Dev" };
+        const pessoa = { ...base, ...adicional };
+        console.log(pessoa); // { nome: 'Carlos', idade: 40, profissão: 'Dev' }
+
+      Esses recursos foram introduzidos no ES6 e ajudam a escrever objetos de forma mais elegante. São muito usados em bibliotecas modernas e frameworks como React.
+
+  Looping em Objetos: Keys, Values e Entries.        26-11-24
+    //Diferente de arrays, objetos não são iteráveis diretamente. Para percorrer ou manipular as informações de um objeto, usamos métodos específicos, como Object.keys, Object.values e Object.entries.
+
+    Esses métodos são essenciais para:
+     - Obter uma lista das chaves, valores ou ambos.
+     - Iterar sobre objetos de forma organizada.
+     - Transformar dados de objetos em arrays para outras operações.
+  
+        Iterar sobre chaves:
+          for (const chave of Object.keys(pessoa)) {
+            console.log(chave); // "nome", "idade", "cidade"
+          }
+        
+        Iterar sobre valores:
+          for (const valor of Object.values(pessoa)) {
+            console.log(valor); // "João", 18, "São Paulo"
+          }
+        
+        Iterar sobre pares chave-valor:
+          for (const [chave, valor] of Object.entries(pessoa)) {
+            console.log(`${chave}: ${valor}`); 
+            // "nome: João", "idade: 18", "cidade: São Paulo"
+          }
+
+  Sets.        03-12-2024
+    //Um Set é uma coleção de valores únicos.
+    Isso significa que não há duplicatas: se você tentar adicionar o mesmo valor mais de uma vez, ele será ignorado.
+
+  Maps.        04-12-2024
+    //Map é uma coleção de pares chave-valor onde as chaves podem ser de qualquer tipo (não apenas strings ou símbolos).
+
+    //Diferente de objetos, Maps mantêm a ordem de inserção das chaves.
+
+
+  Gostei muito desse codigo;
+    //Quiz app;
+    console.log(question.get('Question'));
+
+    for (const [key, value] of question) {
+      if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+    }
+
+    const answer = Number(prompt('Sua resposta'));
+    console.log(question.get(question.get('correct') === answer))

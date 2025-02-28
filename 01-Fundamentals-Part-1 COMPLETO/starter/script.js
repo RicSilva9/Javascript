@@ -1,0 +1,1 @@
+// Na verdade isso é bem fundamental e meio que eu já sei essa parte né.
