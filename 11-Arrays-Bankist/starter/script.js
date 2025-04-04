@@ -90,6 +90,40 @@ currenciesUnique.forEach(function (value, _, map) {
 );
 */
 
+/* Coding Challenge #1 
+
+Julia e Kate estão fazendo um estudo sobre cães. Então, cada uma delas perguntou a 5 donos de cães sobre a idade de seus cães e armazenou os dados em uma matriz (uma matriz para cada). Por enquanto, elas estão interessadas apenas em saber se um cão é adulto ou filhote. Um cão é adulto se tiver pelo menos 3 anos de idade e é filhote se tiver menos de 3 anos.
+
+Crie uma função 'checkDogs', que aceita 2 matrizes de idades de cães ('dogsJulia' e 'dogsKate') e faz as seguintes coisas:
+
+1. Julia descobriu que os donos do PRIMEIRO e dos ÚLTIMOS DOIS cães na verdade têm gatos, não cães! Então crie uma cópia superficial do array de Julia e remova as idades dos gatos daquele array copiado (porque é uma prática ruim mutar parâmetros de função)
+2. Crie um array com os dados de Julia (corrigidos) e Kate
+3. Para cada cachorro restante, registre no console se ele é um adulto ("O cachorro número 1 é um adulto e tem 5 anos") ou um filhote ("O cachorro número 2 ainda é um filhote 🐶")
+4. Execute a função para ambos os conjuntos de dados de teste
+
+DICA: Use ferramentas de todas as aulas desta seção até agora 😉
+
+DADOS DE TESTE 1: Dados de Julia [3, 5, 2, 12, 7], dados de Kate [4, 1, 15, 8, 3]
+DADOS DE TESTE 2: Dados de Julia [9, 16, 6, 8, 3], dados de Kate [10, 5, 6, 1, 4]
+
+BOM SORTE 😀
+*/
+  // Resposta
+const checkDogs = function (dogsJulia, dogsKate) {
+  const juliaDogsCorrected = dogsJulia.slice();
+  juliaDogsCorrected.splice(0, 1);
+  juliaDogsCorrected.splice(-2);
+
+  const dogs = juliaDogsCorrected.concat(dogsKate);
+
+  dogs.forEach(function (dog, i) {
+    const age = dog >= 3 ? 'adulto' : 'filhote';
+    console.log(`O cachorro número ${i + 1} é um ${age} e tem ${dog} anos`);
+  });
+};
+
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // BANKIST APP
 
