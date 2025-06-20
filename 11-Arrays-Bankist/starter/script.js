@@ -108,26 +108,27 @@ DADOS DE TESTE 2: Dados de Julia [9, 16, 6, 8, 3], dados de Kate [10, 5, 6, 1, 4
 
 BOM SORTE 😀
 */
-  // Resposta
-const checkDogs = function (dogsJulia, dogsKate) {
-  const juliaDogsCorrected = dogsJulia.slice();
-  juliaDogsCorrected.splice(0, 1);
-  juliaDogsCorrected.splice(-2);
+// Resposta
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const juliaDogsCorrected = dogsJulia.slice();
+//   juliaDogsCorrected.splice(0, 1);
+//   juliaDogsCorrected.splice(-2);
 
-  const dogs = juliaDogsCorrected.concat(dogsKate);
+//   const dogs = juliaDogsCorrected.concat(dogsKate);
 
-  dogs.forEach(function (dog, i) {
-    const age = dog >= 3 ? 'adulto' : 'filhote';
-    console.log(`O cachorro número ${i + 1} é um ${age} e tem ${dog} anos`);
-  });
-};
+//   dogs.forEach(function (dog, i) {
+//     const age = dog >= 3 ? 'adulto' : 'filhote';
+//     console.log(`O cachorro número ${i + 1} é um ${age} e tem ${dog} anos`);
+//   });
+// };
 
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // BANKIST APP
 
 // Data
+
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -184,33 +185,69 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function(movements) {
+const displayMovements = function (movements) {
   containerMovements.innerHTML = ''; // Clear existing movements
-  
+
   // Display each movement
-  movements.forEach(function(mov, i) {
+  movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
-    
+
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+        <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
         <div class="movements__value">${mov}R$</div>
       </div>
     `;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
-}
+};
 
 displayMovements(account1.movements);
+
+const createUsernames = function(accs) {
+  accs.forEach(function(acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join("");
+  })
+}
+createUsernames(accounts);
+console.log(accounts);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// const realToUsd = 5.5;
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * realToUsd;
+// });
+
+// const movementsUSD = movements.map(mov => mov* realToUsd);
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// const movementsUSDfor = [];
+// for (const mov of movements) movementsUSDfor.push(mov * realToUsd);
+// console.log(movementsUSDfor);
+
+// movements.map((mov, i) => {
+//   console.log(`Moviment ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
+// })
+
+// DESSA FORMA ENSINADA NA AULA, NÃO TEMOS UM EFEITO
+// const movementsDescriptions = movements.map((mov, i) => `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
+// console.log(movementsDescriptions);
