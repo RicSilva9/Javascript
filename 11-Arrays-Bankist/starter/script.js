@@ -228,6 +228,8 @@ console.log(accounts);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
+
+    //METHOD .MAP
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // const realToUsd = 5.5;
@@ -248,6 +250,21 @@ console.log(accounts);
 //   console.log(`Moviment ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
 // })
 
-// DESSA FORMA ENSINADA NA AULA, NÃO TEMOS UM EFEITO
+// DESSA FORMA ENSINADA NA AULA, NÃO TEMOS UM "EFEITO"
 // const movementsDescriptions = movements.map((mov, i) => `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
 // console.log(movementsDescriptions);
+
+  // METHOD .FILTER
+// const deposits = movements.filter(function(mov) {
+//   return mov < 0;
+// })
+// console.log(movements);
+// console.log(deposits)
+
+// const depositsFor = [];
+// for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+// console.log(depositsFor);
+// const withdrawals = movements.filter(mov => mov < 0);
+// console.log(withdrawals);
+
+  // METHOD .REDUCE
