@@ -125,9 +125,121 @@ BOM SORTE 😀
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* Coding Challenge #2
+
+Vamos voltar ao estudo de Julia e Kate sobre cães. Desta vez, elas querem converter as idades dos cães em idades humanas e calcular a idade média dos cães em seu estudo.
+
+Crie uma função 'calcAverageHumanAge', que aceita um array de idades dos cães ('ages') e faz o seguinte em ordem:
+
+1. Calcula a idade do cão em anos humanos usando a seguinte fórmula: se o cão tem <= 2 anos, idadehumana = 2 * idadecachorro. Se o cão tiver > 2 anos, idadehumana = 16 + idadecão * 4.
+2. Exclua todos os cães com menos de 18 anos humanos (o que equivale a manter cães com pelo menos 18 anos).
+3. Calcule a idade humana média de todos os cães adultos (você já deve saber, por outros desafios, como calculamos as médias 😉).
+4. Execute a função para ambos os conjuntos de dados de teste.
+
+DADOS DE TESTE 1: [5, 2, 4, 1, 15, 8, 3]
+DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
+
+BOA SORTE 😀
+*/
+// Resposta
+// MINHA FORMA DE FAZER/COMO EU CONCLUI.
+// const testOne = [5, 2, 4, 1, 15, 8, 3];
+// const calcIdadeHumanaMedia = testOne.map((age) => age <= 2 ? 2 * age : 16 + age * 4, );
+// console.log(calcIdadeHumanaMedia);
+// // 1. 🆗
+// const adultos = calcIdadeHumanaMedia.filter((age) => age >= 18);
+// console.log(adultos);
+// // 2. 🆗
+// const media = adultos.reduce((acc, age) => acc + age, 0) / adultos.length;
+// console.log(media);
+// // 2. 🆗
+
+// CHAT-GPT
+// const dados1 = [5, 2, 4, 1, 15, 8, 3];
+// const dados2 = [16, 6, 10, 5, 6, 1, 4];
+// function calcMediaIdadeHumana(cachorros) {
+//   const media = cachorros
+//     .map(age => (age <= 2 ? 2 * age : 16 + age * 4)) // Converter para idade humana
+//     .filter(age => age >= 18) // Manter apenas adultos
+//     .reduce((acc, age, _, array) => acc + age / array.length, 0); // Calcular média
+
+//   return media;
+// }
+// console.log(calcMediaIdadeHumana(dados1));
+// console.log(calcMediaIdadeHumana(dados2));
+
+// JONAS RESOLUTION
+// const calcAverageHumanAge = function(ages) {
+//   const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+//   const adults = humanAges.filter(age => age >= 18);
+//   console.log(humanAges);
+//   console.log(adults);
+
+//   // const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+//   const average = adults.reduce(
+//     (acc, age, i, arr) => acc + age / arr.length,
+//     0
+//   );
+
+//   // 2 3. (2+3)/2 = 2.5 === 2/2+3/2 = 2.5
+
+//   return average;
+// };
+
+// const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// console.log(avg1, avg2);
+
 // BANKIST APP
 
-// Data
+/* Coding Challenge #4
+Julia e Kate ainda estão estudando cães e, desta vez, estão estudando se eles estão comendo demais ou de menos.
+Comer demais significa que a porção atual de comida do cão é maior do que a recomendada, e comer de menos é o oposto.
+Comer uma quantidade aceitável significa que a porção atual de comida do cão está dentro de uma faixa de 10% acima e 10% abaixo da porção recomendada (veja a dica).
+
+1. Faça um loop sobre o array que contém os objetos "cão" e, para cada cão, calcule a porção de comida recomendada e adicione-a ao objeto como uma nova propriedade. NÃO crie um novo array, simplesmente faça um loop sobre o array. Formula: recommendedFood = peso ** 0,75 * 28. (O resultado é em gramas de comida e o peso precisa ser em kg)
+2. Encontre o cachorro de Sarah e registre no console se ele está comendo demais ou de menos. DICA: Alguns cães têm vários donos, então primeiro você precisa encontrar Sarah no array de proprietários, então esta é um pouco complicada (de propósito) 🤓
+3. Crie um array contendo todos os donos de cães que comem demais ('ownersEatTooMuch') e um array com todos os donos de cães que comem de menos ('ownersEatTooLittle').
+4. Registre uma string no console para cada array criado em 3., como esta: "Os cachorros de Matilda, Alice e Bob comem demais!" e "Os cachorros de Sarah, John e Michael comem de menos!" 5. Registre no console se algum cachorro está comendo EXATAMENTE a quantidade de comida recomendada (apenas verdadeiro ou falso).
+6. Registre no console se algum cachorro está comendo uma quantidade CERTA de comida (apenas verdadeiro ou falso).
+7. Crie um array contendo os cachorros que estão comendo uma quantidade CERTA de comida (tente reutilizar a condição usada em 6).
+8. Crie uma cópia superficial do array dogs e classifique-a pela porção de comida recomendada em ordem crescente (lembre-se de que as porções estão dentro dos objetos do array).
+
+DICA 1: Use várias ferramentas diferentes para resolver esses desafios. Você pode usar a aula resumida para escolher entre elas 😉
+DICA 2: Estar dentro de uma faixa de 10% acima e abaixo da porção recomendada significa: atual > (recomendado * 0,90) && atual < (recomendado * 1,10). Basicamente, a porção atual deve estar entre 90% e 110% da porção recomendada.
+
+DADOS DE TESTE:
+const dogs = [
+{ peso: 22, curFood: 250, donos: ['Alice', 'Bob'] },
+{ peso: 8, curFood: 200, donos: ['Matilda'] },
+{ peso: 13, curFood: 275, donos: ['Sarah', 'John'] },
+{ peso: 32, curFood: 340, donos: ['Michael'] }
+];
+
+BOA SORTE 😀
+*/
+
+/*Resposta
+
+const calcAverageHumanAge2 = function (ages) {
+  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  const adults = humanAges.filter(age => age >= 18);
+  
+  const average = adults.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+  return average;
+};
+
+const calcAverageHumanAge = ages =>
+  ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4)).filter(age => age >= 18).filter(age => age >= 18).reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+console.log(avg1, avg2);
+
+*/
 
 const account1 = {
   owner: 'Jonas Schmedtmann',
@@ -207,17 +319,45 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
-const createUsernames = function(accs) {
-  accs.forEach(function(acc) {
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}R$`;
+};
+calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}R$`;
+
+  const outcomes = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}R$`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      // console.log(arr);
+      return int >= 1; // Filtro para garantir que o interesse seja pelo menos 1
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}R$`;
+};
+calcDisplaySummary(account1.movements);
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
     acc.username = acc.owner
       .toLowerCase()
       .split(' ')
       .map(name => name[0])
-      .join("");
-  })
-}
+      .join('');
+  });
+};
 createUsernames(accounts);
-console.log(accounts);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // LECTURES
@@ -228,8 +368,7 @@ console.log(accounts);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-
-    //METHOD .MAP
+//METHOD .MAP
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // const realToUsd = 5.5;
@@ -254,7 +393,7 @@ console.log(accounts);
 // const movementsDescriptions = movements.map((mov, i) => `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
 // console.log(movementsDescriptions);
 
-  // METHOD .FILTER
+// METHOD .FILTER
 // const deposits = movements.filter(function(mov) {
 //   return mov < 0;
 // })
@@ -267,4 +406,48 @@ console.log(accounts);
 // const withdrawals = movements.filter(mov => mov < 0);
 // console.log(withdrawals);
 
-  // METHOD .REDUCE
+// METHOD .REDUCE
+// console.log(movements);
+
+// accumulator é o valor que vai sendo acumulado ao longo do processo
+
+// const balance = movements.reduce(function (acc, cur, i) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+// const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(balance);
+
+// let balance2 = 0;
+// for (const mov of movements) balance2 += mov;
+// console.log(balance2);
+
+// Maior valor valor da matriz movements
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const eurToUsd = 1.1;
+
+// const max = movements.reduce((acc, mov) => {
+//   if (acc > mov)
+//     return acc;
+//   else
+//     return mov;
+// }, movements[0])
+
+// console.log(max);
+
+// Essa abaixo é a forma que eu considero mais clean e é a forma que eu usaria
+// const max = movements.reduce((acc, mov) => acc > mov ? acc : mov, movements[0]);
+// console.log(max);
+
+// PIPELINE
+// console.log(movements);
+
+// const totalDepositUSD = movements
+//   .filter(mov => mov > 0)
+//   // .map(mov => mov * eurToUsd)
+//   .map((mov, i, arr) => {
+//     // console.log(arr);
+//     return mov * eurToUsd
+//   })
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalDepositUSD);
