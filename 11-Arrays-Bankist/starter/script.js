@@ -317,36 +317,32 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
-
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}R$`;
 };
-calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}R$`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}R$`;
 
-  const outcomes = movements
+  const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(outcomes)}R$`;
+  labelSumOut.textContent = `${Math.abs(outcomes).toFixed(2)}R$`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       // console.log(arr);
       return int >= 1; // Filtro para garantir que o interesse seja pelo menos 1
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}R$`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}R$`;
 };
-calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -358,6 +354,36 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
+
+// Event handlers
+let currentAccount;
+
+btnLogin.addEventListener('click', function(e) {
+  // Prevent form from submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+  // console.log(currentAccount);
+  
+  if(currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Bem-vindo(a) de volta, ${currentAccount.owner.split(' ')[0]}!`;
+    containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display Movements
+    displayMovements(currentAccount.movements);
+
+    // Display Balance
+    calcDisplayBalance(currentAccount.movements);
+    
+    // Display Summary
+    calcDisplaySummary(currentAccount);
+  }
+})
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // LECTURES
