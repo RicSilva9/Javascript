@@ -741,3 +741,37 @@ const overalBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overalBalance2);
 */
+
+// Stings
+const proprietários = ['Ricardo', 'Jonas', 'Adriano', 'Matheus'];
+console.log(proprietários);
+console.log(proprietários.sort()); // new method
+console.log(proprietários);
+
+// Numbers
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+// return < 0, A, B (manter ordem)
+// return > 0, B, A (trocar ordem)
+
+// ASCENDENTE
+// movements.sort((a, b) => {
+    // Esses parâmetros são essencialmente o valor atual e o próximo valor se imaginarmos o método .sort() percorrendo a matriz.
+//   if (a > b) 
+//     return 1
+//   if (b > a)
+//     return -1
+// })
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// DESCEDENTE
+// movements.sort((a, b) => {
+//   if (a > b)
+//     return -1
+//   if (b > a)
+//     return 1
+// })
+movements.sort((a, b) => b - a);
+console.log(movements)
